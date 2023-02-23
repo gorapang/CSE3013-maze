@@ -194,7 +194,7 @@ void ofApp::draw() {
 	int i, j;
 	
 	// TO DO : DRAW MAZE; 
-	// ÀúÀåµÈ ÀÚ·á±¸Á¶¸¦ ÀÌ¿ëÇØ ¹Ì·Î¸¦ ±×¸°´Ù.
+	// ì €ì¥ëœ ìë£Œêµ¬ì¡°ë¥¼ ì´ìš©í•´ ë¯¸ë¡œë¥¼ ê·¸ë¦°ë‹¤.
 	// add code here
 	if (read_flag == 1)
 	{ 
@@ -225,7 +225,7 @@ void ofApp::draw() {
 					ofDrawRectangle(x, y, 5, 5);
 					x += 5;
 				}
-				else //¼ıÀÚ µé¾î°¡ÀÖÀ» °æ¿ì °ø¹é°ú µ¿ÀÏÇÏ°Ô Ã³¸® <- ÇÊ¿ä ¾øÀ½
+				else //ìˆ«ì ë“¤ì–´ê°€ìˆì„ ê²½ìš° ê³µë°±ê³¼ ë™ì¼í•˜ê²Œ ì²˜ë¦¬ <- í•„ìš” ì—†ìŒ
 				{
 					if (j % 2 == 0)
 						x += 5;
@@ -432,9 +432,9 @@ bool ofApp::readFile()
 			int input_flag = 0;
 
 			// TO DO
-			// .maz ÆÄÀÏÀ» inputÀ¸·Î ¹Ş¾Æ¼­ ÀûÀıÈ÷ ÀÚ·á±¸Á¶¿¡ ³Ö´Â´Ù
+			// .maz íŒŒì¼ì„ inputìœ¼ë¡œ ë°›ì•„ì„œ ì ì ˆíˆ ìë£Œêµ¬ì¡°ì— ë„£ëŠ”ë‹¤
 
-			// ÆÄÀÏÀ» ÀĞ¾î WIDTH¿Í HEIGHT ±¸ÇÏ±â
+			// íŒŒì¼ì„ ì½ì–´ WIDTHì™€ HEIGHT êµ¬í•˜ê¸°
 			HEIGHT = 0;
 			for (ofBuffer::Line it = buffer.getLines().begin(), end = buffer.getLines().end(); it != end; ++it)
 			{
@@ -445,7 +445,7 @@ bool ofApp::readFile()
 
 			//printf("%d %d\n", HEIGHT, WIDTH);
 
-			//±¸ÇÑ HEIGHT¿Í WIDTH ÀÌ¿ëÇÏ¿© input¿¡ ¸Ş¸ğ¸® ÇÒ´ç
+			//êµ¬í•œ HEIGHTì™€ WIDTH ì´ìš©í•˜ì—¬ inputì— ë©”ëª¨ë¦¬ í• ë‹¹
 			input_for_draw = (char**)malloc(sizeof(char*) * HEIGHT);
 			for (int i = 0; i < HEIGHT; i++)
 				input_for_draw[i] = (char*)malloc(sizeof(char) * WIDTH);
@@ -455,12 +455,12 @@ bool ofApp::readFile()
 			for (int i = 0; i < HEIGHT; i++)
 				rooms[i] = (int*)malloc(sizeof(int) * WIDTH);
 
-			//¿À·ù ¹æÁö¸¦ À§ÇØ -1·Î ÃÊ±âÈ­ (¹æÀÌ ¾Æ´Ñ ºÎºĞ¿¡´Â -1ÀÌ ÀÖ¾î¾ß ÇÔ, adjÀÇ ¿ø¼Ò Áß -1ÀÌ ÀÖÀ¸¸é ÀÌ»óÇÑ°Å)
+			//ì˜¤ë¥˜ ë°©ì§€ë¥¼ ìœ„í•´ -1ë¡œ ì´ˆê¸°í™” (ë°©ì´ ì•„ë‹Œ ë¶€ë¶„ì—ëŠ” -1ì´ ìˆì–´ì•¼ í•¨)
 			for (int i = 0; i < HEIGHT; i++)
 				for (int j = 0; j < WIDTH; j++)
 					rooms[i][j] = -1;
 	
-			//°¢ ¹æ¿¡ ¹øÈ£ ºÎ¿©
+			//ê° ë°©ì— ë²ˆí˜¸ ë¶€ì—¬
 			int tmpcnt = 0;
 			for (int i = 1; i < HEIGHT; i += 2)
 			{
@@ -471,7 +471,7 @@ bool ofApp::readFile()
 				}
 			}
 
-			roomnum = (HEIGHT - 1) / 2 * (WIDTH - 1) / 2; //vertexÀÇ °³¼ö
+			roomnum = (HEIGHT - 1) / 2 * (WIDTH - 1) / 2; //vertexì˜ ê°œìˆ˜
 
 			maze_row = 0;
 			for (ofBuffer::Line it = buffer.getLines().begin(), end = buffer.getLines().end(); it != end; ++it)
@@ -484,20 +484,6 @@ bool ofApp::readFile()
 				maze_row++;
 			}
 
-			//inputÀÇ °¢ ¹æ¿¡ ¹øÈ£ ºÎ¿© ¾Æ½ºÅ° ÄÚµå 127 ÃÊ°úÇÏ±â ¶§¹®¿¡ ¹Ì·Î Ä¿Áö¸é dfs µ¿ÀÛ ¾ÈÇÔ(¾Ë¸ÂÀº ¼ıÀÚ°¡ ¾Èµé¾îÀÖ¾î¼­)
-			//char**°¡ ¾Æ´Ñ int** rooms¿¡ ¹æ ¹øÈ£ ÀúÀåÇÏ±â
-
-			//¾Æ·¡ Áö¿ì±â
-			/*int num = 48;
-			for (int i = 1; i < HEIGHT; i += 2)
-			{
-				for (int j = 1; j < WIDTH; j += 2)
-				{
-					input[i][j] = num;
-					num++;
-				}
-			}*/
-				
 			//debug
 			/*printf("input_for_draw\n");
 			for (int i = 0; i < HEIGHT; i++)
@@ -520,45 +506,12 @@ bool ofApp::readFile()
 				printf("\n");
 			}*/
 
-		/*	printf("rooms\n");
-			for (int i = 0; i < HEIGHT; i++)
-			{
-				for (int j = 0; j < WIDTH; j++)
-				{
-					printf("%d", rooms[i][j]);
-				}
-				printf("\n");
-			}*/
-
 			//DEBUG
 			//printf("height:%d / width:%d / roomnum:%d\n", HEIGHT, WIDTH, roomnum);
 
-
-			//ÀÎÁ¢Çà·Ä ³Ê¹« Å©´Ù...
 			int room1, room2;
-			//for (int i = 1; i < HEIGHT; i+=2)
-			//{
-			//	for (int j = 1; j < WIDTH; j+=2)
-			//	{
-			//		if (input[i][j + 1] == ' ') //¿ìÃø º® ¾øÀ½
-			//		{
-			//			//input[i][j]¿Í input[i][j+2] ¿¬°á
-			//			room1 = input[i][j] - '0';
-			//			room2 = input[i][j + 2] - '0';
-			//			adjacency[room1][room2] = 1;
-			//			adjacency[room2][room1] = 1; //´ëÄª Ã³¸®
-			//		}
-			//		if (input[i + 1][j] == ' ') //¾Æ·¡ º® ¾øÀ½
-			//		{
-			//			room1 = input[i][j] - '0';
-			//			room2 = input[i + 2][j] - '0';
-			//			adjacency[room1][room2] = 1;
-			//			adjacency[room2][room1] = 1;
-			//		}
-			//	}
-			//}
 
-			//Èñ¼ÒÇà·Ä·Î Ç¥ÇöÇÑ ÀÎÁ¢Çà·Ä
+			//í¬ì†Œí–‰ë ¬ë¡œ í‘œí˜„í•œ ì¸ì ‘í–‰ë ¬
 			adj_cnt = 0;
 			for (int i = 1; i < HEIGHT; i += 2)
 			{
@@ -566,7 +519,7 @@ bool ofApp::readFile()
 				{
 					if (input_for_draw[i][j + 1] == ' ')
 					{
-						room1 = rooms[i][j]; //room1 = input[i][j] - '0'; ÀÌ·¸°Ô ÇÏ¸é ¾ÈµÊ(¾Æ½ºÅ° ÄÚµå´Â 127±îÁö¹Û¿¡ ¾øÀ¸´Ï±î, ±× ÀÌÈÄ´Â ÀÌ»óÇÑ °ªÀÌ ÀúÀåµÊ)
+						room1 = rooms[i][j];
 						room2 = rooms[i][j + 2];
 						adj[adj_cnt].room1 = room1;
 						adj[adj_cnt].room2 = room2;
@@ -602,7 +555,7 @@ bool ofApp::readFile()
 			}*/
 
 			read_flag = 1;
-			if (isDFS == 1) isDFS = 0; //ÇÑ ¹Ì·Î¿¡¼­ dfs ÈÄ ´Ù¸¥ ¹Ì·Î openÇÏ¸é ¹Ù·Î dfsµÇ´Â°Í ¹æÁö
+			if (isDFS == 1) isDFS = 0; //í•œ ë¯¸ë¡œì—ì„œ dfs í›„ ë‹¤ë¥¸ ë¯¸ë¡œë¥¼ ì—´ì—ˆì„ ë•Œ ë°”ë¡œ dfsë˜ëŠ”ê²ƒ ë°©ì§€
 			if (isBFS == 1) isBFS = 0;
 		}
 
@@ -616,7 +569,7 @@ bool ofApp::readFile()
 
 void ofApp::freeMemory() {
 	//TO DO
-	// mallocÇÑ memory¸¦ freeÇØÁÖ´Â ÇÔ¼ö
+	// mallocí•œ memoryë¥¼ freeí•´ì£¼ëŠ” í•¨ìˆ˜
 	int i;
 
 	for (i = 0; i < HEIGHT; i++)
@@ -629,11 +582,10 @@ void ofApp::freeMemory() {
 	printf("free complete\n");
 }
 
-bool ofApp::DFS(int v)//DFSÅ½»öÀ» ÇÏ´Â ÇÔ¼ö
+bool ofApp::DFS(int v)//DFSíƒìƒ‰ì„ í•˜ëŠ” í•¨ìˆ˜
 {
 	//TO DO
-	//DFSÅ½»öÀ» ÇÏ´Â ÇÔ¼ö (3ÁÖÂ÷)
-	//isDFS = 1; //while¹® ¾È¿¡¼­ returnµÇ´Ï±î ¸ÇµÚ¿¡¾²¸é ¾ÈµÊ
+	//DFSíƒìƒ‰ì„ í•˜ëŠ” í•¨ìˆ˜ (3ì£¼ì°¨)
 	if (isBFS == 1) isBFS = 0;
 	visited = (int*)calloc(roomnum, sizeof(int));
 	push_trail = (int*)calloc(roomnum, sizeof(int));
@@ -647,14 +599,14 @@ bool ofApp::DFS(int v)//DFSÅ½»öÀ» ÇÏ´Â ÇÔ¼ö
 
 	push_trail[push_cnt] = v;
 	push_cnt++;
-	//Ã¹ ¹øÂ° ³ëµå ½ºÅÃ¿¡ ³Ö°í VISITED Ã³¸®
+	//ì²« ë²ˆì§¸ ë…¸ë“œ ìŠ¤íƒì— ë„£ê³  VISITED ì²˜ë¦¬
 
 	while (!s.empty())
 	{
 		if (s.top() == roomnum - 1)
 		{
 			isDFS = 1;
-			return true; //¸¶Áö¸· ¹æ¿¡ µµÂøÇÏ¸é return
+			return true; //ë§ˆì§€ë§‰ ë°©ì— ë„ì°©í•˜ë©´ return
 		}
 
 		int flag = 0; int room;
@@ -662,9 +614,9 @@ bool ofApp::DFS(int v)//DFSÅ½»öÀ» ÇÏ´Â ÇÔ¼ö
 		
 		for (int i = 0; i < roomnum; i++)
 		{
-			for (int j = 0; j < adj_cnt; j++) //adj Å½»öÇÏ¿©,
+			for (int j = 0; j < adj_cnt; j++) //adj íƒìƒ‰í•˜ì—¬,
 			{
-				if ((adj[j].room1 == i && adj[j].room2 == s.top()) || (adj[j].room1 == s.top() && adj[j].room2 == i)) //adj¿¡ [i, s.top()]ÀÌ³ª [s.top(), i]°¡ Á¸ÀçÇÏ´Â °æ¿ì
+				if ((adj[j].room1 == i && adj[j].room2 == s.top()) || (adj[j].room1 == s.top() && adj[j].room2 == i)) //adjì— [i, s.top()]ì´ë‚˜ [s.top(), i]ê°€ ì¡´ì¬í•˜ëŠ” ê²½ìš°
 				{
 					if (visited[i] == 0)
 					{
@@ -675,37 +627,28 @@ bool ofApp::DFS(int v)//DFSÅ½»öÀ» ÇÏ´Â ÇÔ¼ö
 			}
 		}
 
-		//for (int i = 0; i < roomnum; i++) //¿ì¼±¼øÀ§ ¾Æ·¡, ¿À¸¥ÂÊ, ¿ŞÂÊ, À§
-		//{
-		//	if (adjacency[i][s.top()] == 1 && visited[i] == 0)
-		//	{
-		//		flag = 1;
-		//		room = i;
-		//	}
-		//}
-
 		if (flag == 1)
 		{
-			s.push(room); //PUSHÇÏ¸é ÃÊ·Ï
+			s.push(room); //PUSHí•˜ë©´ ì´ˆë¡
 			push_trail[push_cnt] = room;
 			push_cnt++;
 			visited[room] = 1;
 		}
 		else
 		{
-			int poproom = s.top(); //popÇÏ¸é »¡°£»ö 
+			int poproom = s.top(); //popí•˜ë©´ ë¹¨ê°„ìƒ‰ 
 			s.pop();
 			pop_trail[pop_cnt] = poproom;
 			pop_cnt++;
 		}
 	}
-	return false; //¸¶Áö¸· ¹æ¿¡ µµÂøÇÏÁö ¸øÇÑ °æ¿ì(Àß¸øµÈ °æ¿ì)
+	return false; //ë§ˆì§€ë§‰ ë°©ì— ë„ì°©í•˜ì§€ ëª»í•œ ê²½ìš°(ì˜ëª»ëœ ê²½ìš°)
 }
 
 void ofApp::dfsdraw()
 {
 	//TO DO 
-	//DFS¸¦ ¼öÇàÇÑ °á°ú¸¦ ±×¸°´Ù. (3ÁÖÂ÷)
+	//DFSë¥¼ ìˆ˜í–‰í•œ ê²°ê³¼ë¥¼ ê·¸ë¦°ë‹¤. (3ì£¼ì°¨)
 	ofSetColor(0, 255, 0);
 	int x, y;
 	int i;
@@ -729,7 +672,7 @@ void ofApp::dfsdraw()
 	}
 }
 
-bool ofApp::BFS(int v)//DFSÅ½»öÀ» ÇÏ´Â ÇÔ¼ö
+bool ofApp::BFS(int v)//DFSíƒìƒ‰ì„ í•˜ëŠ” í•¨ìˆ˜
 {
 	if (isDFS == 1) isDFS = 0;
 
@@ -757,7 +700,7 @@ bool ofApp::BFS(int v)//DFSÅ½»öÀ» ÇÏ´Â ÇÔ¼ö
 
 		if (room == roomnum - 1)
 		{
-			//path ±¸ÇÏ±â 0ºÎÅÍ n±îÁö°¡ ¾Æ´Ï¶ó nºÎÅÍ 0±îÁö °æ·Î ÀúÀåµÊ
+			//path êµ¬í•˜ê¸° 0ë¶€í„° nê¹Œì§€ê°€ ì•„ë‹ˆë¼ në¶€í„° 0ê¹Œì§€ ê²½ë¡œ ì €ì¥ë¨
 			int par;
 			path[0] = roomnum - 1;
 			path_cnt++;
