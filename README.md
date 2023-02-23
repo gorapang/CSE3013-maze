@@ -8,10 +8,10 @@ Visual Studio 2017, Openframeworks<br/>
 4/220850894-fcb4e4a2-02be-4f32-a826-619908005d4d.png)<br/><br/><br/>
 
 ### View → Show DFS
-![maze2dfs](https://user-images.githubusercontent.com/107031994/220854935-d1c2b773-7470-4481-a5e6-2f71ec606763.png)<br/><br/><br/>
+![maze2dfs](https://user-images.githubusercontent.com/107031994/220855261-2698857c-65e3-4140-a774-03c770d3d858.png)<br/><br/><br/>
 
 ### View → Show BFS
-![maze3bfs](https://user-images.githubusercontent.com/107031994/220854512-5a6fc8ac-6806-41b2-b458-29d6773c9f25.png)<br/><br/><br/>
+![maze3bfs](https://user-images.githubusercontent.com/107031994/220855198-e372403a-b02c-4193-bccf-8e68cfd57404.png)<br/><br/><br/>
 
 
 
