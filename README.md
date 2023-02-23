@@ -4,8 +4,7 @@
 Visual Studio 2017, Openframeworks<br/>
 
 ### File → Open
-(https://user-images.githubusercontent.com/107031994/220854497-9a516ce4-c948-4ed1-a0da-c3b636bca2f5.png)
-4/220850894-fcb4e4a2-02be-4f32-a826-619908005d4d.png)<br/><br/><br/>
+![maze1](https://user-images.githubusercontent.com/107031994/220855343-e94b9a54-400b-4ea7-b5d2-57e4a19b4a8e.png)<br/><br/><br/>
 
 ### View → Show DFS
 ![maze2dfs](https://user-images.githubusercontent.com/107031994/220855261-2698857c-65e3-4140-a774-03c770d3d858.png)<br/><br/><br/>
